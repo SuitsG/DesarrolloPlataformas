@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresar libro</title>
+    <link rel="stylesheet" href="/styles/book/addBook.css">
 </head>
 <body>
     <header>
@@ -16,10 +17,14 @@
                     <td>Nombre del libro</td>
                     <td><input type="text" name="nombre"></td>
                 </tr>
-                <input type="hidden" name="insertar" value="insertar">
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="insertar" value="insertar">
+                        <input type="submit" value="Guardar">
+                        <a href="/index.php">Volver</a>
+                    </td>
+                </tr>
             </table>
-            <input type="submit" value="Guardar">
-            <a href="index.php">Volver</a>
         </form>
     </main>
 </body>

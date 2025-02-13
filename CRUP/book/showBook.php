@@ -14,16 +14,22 @@ $listaLibros = $crud->mostrar();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar libros</title>
+    <link rel="stylesheet" href="/styles/book/showBook.css">
 </head>
 <body>
+    <header class="header">
+        <h1>Libros disponibles</h1>
+    </header>
     <main>
         <table border="1">
-            <head>
-                <td>Nombre</td>
-                <td>Actualizar</td>
-                <td>Eliminar</td>
-            </head>
-            <body>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php foreach ($listaLibros as $libro) { ?>
                     <tr>
                         <td><?php echo $libro->getNombre(); ?></td>
@@ -31,9 +37,9 @@ $listaLibros = $crud->mostrar();
                         <td><a href="administrarBook.php?id=<?php echo $libro->getId(); ?>&accion=e">Eliminar</a></td>
                     </tr>
                 <?php } ?>
-            </body>
+            </tbody>
         </table>
-        <a href="index.php">Volver</a>
+        <a href="/index.php">Volver</a>
     </main>
 </body>
 </html>

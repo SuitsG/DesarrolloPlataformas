@@ -1,6 +1,6 @@
 <?php
-require_once('book.php');
-require_once('crudBook.php');
+require_once('/book/book.php');
+require_once('/book/crudBook.php');
 
 
 $crud = new CrudLibro();
