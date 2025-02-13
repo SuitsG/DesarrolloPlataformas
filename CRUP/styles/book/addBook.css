@@ -74,3 +74,8 @@ a {
 a:hover {
     background-color: #5a6268;
 }
+
+tr{
+    display: flex;
+    flex-direction: column;
+}

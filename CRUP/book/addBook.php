@@ -16,6 +16,10 @@
                 <tr>
                     <td>Nombre del libro</td>
                     <td><input type="text" name="nombre"></td>
+                    <td>Nombre del autor</td>
+                    <td><input type="text" name="author"></td>
+                    <td>Nombre de la editorial</td>
+                    <td><input type="text" name="publisher"></td>
                 </tr>
                 <tr>
                     <td colspan="2">
