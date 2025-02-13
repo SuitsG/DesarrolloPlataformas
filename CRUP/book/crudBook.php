@@ -7,8 +7,8 @@ class CrudLibro{
     }
     public function insertar($libro){
         $db=Db::conectar();
-        $insert=$db->prepare('INSERT INTO libros values(NULL,:nombre)');
-        $insert->bindValue('nombre',$libro->getNombre());
+        $insert=$db->prepare('INSERT INTO book values(NULL,:nameBook)');
+        $insert->bindValue('nameBook',$libro->getNombre());
         $insert->execute();
     }
 
@@ -16,12 +16,12 @@ class CrudLibro{
     {
         $db = Db::conectar();
         $listaLibros = [];
-        $select = $db->query('SELECT * FROM libros');
+        $select = $db->query('SELECT * FROM book');
 
         foreach ($select->fetchAll() as $libro) {
             $myLibro = new Libro();
             $myLibro->setId($libro['id']);
-            $myLibro->setNombre($libro['nombre']);
+            $myLibro->setNombre($libro['nameBook']);
             $listaLibros[] = $myLibro;
         }
         return $listaLibros;
@@ -30,7 +30,7 @@ class CrudLibro{
     public function eliminar($id)
     {
         $db = Db::conectar();
-        $eliminar = $db->prepare('DELETE FROM libros WHERE ID=:id');
+        $eliminar = $db->prepare('DELETE FROM book WHERE ID=:id');
         $eliminar->bindValue('id', $id);
         $eliminar->execute();
     }
@@ -38,22 +38,22 @@ class CrudLibro{
     public function obtenerLibro($id)
     {
         $db = Db::conectar();
-        $select = $db->prepare('SELECT * FROM libros WHERE ID=:id');
+        $select = $db->prepare('SELECT * FROM book WHERE ID=:id');
         $select->bindValue('id', $id);
         $select->execute();
         $libro = $select->fetch();
         $myLibro = new Libro();
         $myLibro->setId($libro['id']);
-        $myLibro->setNombre($libro['nombre']);
+        $myLibro->setNombre($libro['nameBook']);
         return $myLibro;
     }
 
     public function actualizar($libro)
     {
         $db = Db::conectar();
-        $actualizar = $db->prepare('UPDATE libros SET nombre=:nombre WHERE ID=:id');
+        $actualizar = $db->prepare('UPDATE book SET nameBook=:nameBook WHERE ID=:id');
         $actualizar->bindValue('id', $libro->getId());
-        $actualizar->bindValue('nombre', $libro->getNombre());
+        $actualizar->bindValue('nameBook', $libro->getNombre());
         $actualizar->execute();
     }
 }
