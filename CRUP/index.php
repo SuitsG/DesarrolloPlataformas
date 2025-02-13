@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td><a href="/book/showBook.php">Ver libros</a></td>
-                        <td><a href="showAuthors.php">Ver Autores</a></td>
+                        <td><a href="/author/showAuthors.php">Ver Autores</a></td>
                         <td><a href="showPublishers.php">Ver Editoriales</a></td>
                     </tr>
                 </tbody>

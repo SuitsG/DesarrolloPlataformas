@@ -24,7 +24,7 @@ class CrudAuthor
     {
         $db = Db::conectar();
         $listaAuthors = [];
-        $select = $db->query('SELECT * FROM authors');
+        $select = $db->query('SELECT * FROM author');
 
         foreach ($select->fetchAll() as $author) {
             $myAuthor = new Author();
@@ -43,7 +43,7 @@ class CrudAuthor
     public function eliminar($id)
     {
         $db = Db::conectar();
-        $eliminar = $db->prepare('DELETE FROM authors WHERE id=:id');
+        $eliminar = $db->prepare('DELETE FROM author WHERE  id=:id');
         $eliminar->bindValue('id', $id);
         $eliminar->execute();
     }
