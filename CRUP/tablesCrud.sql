@@ -5,7 +5,6 @@ CREATE TABLE book(
     nameBook VARCHAR(255)
 );
 
-INSERT INTO book VALUES (1,'Cumbia');
 
 
 CREATE TABLE author(

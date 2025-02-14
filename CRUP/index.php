@@ -25,12 +25,12 @@
                     <tr>
                         <td><a href="/book/addBook.php">Agregar libro</a></td>
                         <td><a href="/author/addAuthor.php">Agregar Autor</a></td>
-                        <td><a href="addPublisher.php">Agregar Editorial</a></td>
+                        <td><a href="/publisher/addPublisher.php">Agregar Editorial</a></td>
                     </tr>
                     <tr>
                         <td><a href="/book/showBook.php">Ver libros</a></td>
                         <td><a href="/author/showAuthors.php">Ver Autores</a></td>
-                        <td><a href="showPublishers.php">Ver Editoriales</a></td>
+                        <td><a href="/publisher/showPublisher.php">Ver Editoriales</a></td>
                     </tr>
                 </tbody>
             </table>
