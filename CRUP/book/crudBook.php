@@ -7,7 +7,7 @@ class CrudLibro{
     }
     public function insertar($libro){
         $db=Db::conectar();
-        $insert=$db->prepare('INSERT INTO book values(NULL,:nameBook)');
+        $insert=$db->prepare('INSERT INTO books values(NULL,:nameBook)');
         $insert->bindValue('nameBook',$libro->getNombre());
         $insert->execute();
     }
@@ -16,7 +16,7 @@ class CrudLibro{
     {
         $db = Db::conectar();
         $listaLibros = [];
-        $select = $db->query('SELECT * FROM book');
+        $select = $db->query('SELECT * FROM books');
 
         foreach ($select->fetchAll() as $libro) {
             $myLibro = new Libro();
@@ -30,7 +30,7 @@ class CrudLibro{
     public function eliminar($id)
     {
         $db = Db::conectar();
-        $eliminar = $db->prepare('DELETE FROM book WHERE ID=:id');
+        $eliminar = $db->prepare('DELETE FROM books WHERE ID=:id');
         $eliminar->bindValue('id', $id);
         $eliminar->execute();
     }
@@ -38,7 +38,7 @@ class CrudLibro{
     public function obtenerLibro($id)
     {
         $db = Db::conectar();
-        $select = $db->prepare('SELECT * FROM book WHERE ID=:id');
+        $select = $db->prepare('SELECT * FROM books WHERE ID=:id');
         $select->bindValue('id', $id);
         $select->execute();
         $libro = $select->fetch();
@@ -51,7 +51,7 @@ class CrudLibro{
     public function actualizar($libro)
     {
         $db = Db::conectar();
-        $actualizar = $db->prepare('UPDATE book SET nameBook=:nameBook WHERE ID=:id');
+        $actualizar = $db->prepare('UPDATE books SET nameBook=:nameBook WHERE ID=:id');
         $actualizar->bindValue('id', $libro->getId());
         $actualizar->bindValue('nameBook', $libro->getNombre());
         $actualizar->execute();

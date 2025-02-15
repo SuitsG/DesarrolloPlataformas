@@ -33,8 +33,8 @@ $listaLibros = $crud->mostrar();
                 <?php foreach ($listaLibros as $libro) { ?>
                     <tr>
                         <td><?php echo $libro->getNombre(); ?></td>
-                        <td><a href="update.php?id=<?php echo $libro->getId(); ?>&accion=a">Actualizar</a></td>
-                        <td><a href="administrarBook.php?id=<?php echo $libro->getId(); ?>&accion=e">Eliminar</a></td>
+                        <td><a href="updateBook.php?id=<?php echo $libro->getId(); ?>&accion=a">Actualizar</a></td>
+                        <td><a href="manageBook.php?id=<?php echo $libro->getId(); ?>&accion=e">Eliminar</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

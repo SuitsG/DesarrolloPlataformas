@@ -10,7 +10,7 @@ class CrudAuthor
     public function insertar($author)
     {
         $db = Db::conectar();
-        $insert = $db->prepare('INSERT INTO author (firstName, lastName, address, phone, email, city) VALUES (:firstName, :lastName, :address, :phone, :email, :city)');
+        $insert = $db->prepare('INSERT INTO authors (firstName, lastName, address, phone, email, city) VALUES (:firstName, :lastName, :address, :phone, :email, :city)');
         $insert->bindValue('firstName', $author->getFirstName());
         $insert->bindValue('lastName', $author->getLastName());
         $insert->bindValue('address', $author->getAddress());
@@ -24,7 +24,7 @@ class CrudAuthor
     {
         $db = Db::conectar();
         $listaAuthors = [];
-        $select = $db->query('SELECT * FROM author');
+        $select = $db->query('SELECT * FROM authors');
 
         foreach ($select->fetchAll() as $author) {
             $myAuthor = new Author();
@@ -40,10 +40,18 @@ class CrudAuthor
         return $listaAuthors;
     }
 
+    public function obtenerTodosLosAutores()
+    {
+        $db = Db::conectar();
+        $select = $db->query('SELECT id, firstName FROM authors');
+        $listaAuthors = $select->fetchAll();
+        return $listaAuthors;
+    }
+
     public function eliminar($id)
     {
         $db = Db::conectar();
-        $eliminar = $db->prepare('DELETE FROM author WHERE  id=:id');
+        $eliminar = $db->prepare('DELETE FROM authors WHERE  id=:id');
         $eliminar->bindValue('id', $id);
         $eliminar->execute();
     }
@@ -79,5 +87,6 @@ class CrudAuthor
         $actualizar->bindValue('city', $author->getCity());
         $actualizar->execute();
     }
+    
 }
 ?>

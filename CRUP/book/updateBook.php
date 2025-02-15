@@ -16,11 +16,12 @@ $libro = $crud->obtenerLibro($_GET['id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar libro</title>
+    <link rel="stylesheet" href="/styles/book/updateBook.css">
 </head>
 
 <body>
     <main>
-        <form action="administrarBook.php" method="post">
+        <form action="manageBook.php" method="post">
             <table>
                 <tr>
                     <input type="hidden" name="id" value="<?php echo $libro->getId() ?>">
@@ -30,7 +31,7 @@ $libro = $crud->obtenerLibro($_GET['id']);
                 <input type="hidden" name="actualizar" value="actualizar">
             </table>
             <input type="submit" value="Guardar">
-            <a href="index.php">Volver</a>
+            <a href="/index.php">Volver</a>
         </form>
     </main>
 
