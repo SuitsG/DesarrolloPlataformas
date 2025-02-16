@@ -1,11 +1,11 @@
 <?php
+
+require_once('../conexion.php');
 require_once('book.php');
 require_once('crudBook.php');
 
-$crud = new CrudLibro();
-$libro = new Libro();
-
-$listaLibros = $crud->mostrar();
+$crud = new CrudBook(Db::conectar());
+$listaLibros = $crud->getBooksWithDetails();
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +25,20 @@ $listaLibros = $crud->mostrar();
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Editorial</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listaLibros as $libro) { ?>
+                <?php foreach ($listaLibros as $book) { ?>
                     <tr>
-                        <td><?php echo $libro->getNombre(); ?></td>
-                        <td><a href="updateBook.php?id=<?php echo $libro->getId(); ?>&accion=a">Actualizar</a></td>
-                        <td><a href="manageBook.php?id=<?php echo $libro->getId(); ?>&accion=e">Eliminar</a></td>
+                        <td><?php echo $book['nameBook']; ?></td>
+                        <td><?php echo $book['authorName']; ?></td>
+                        <td><?php echo $book['publisherName']; ?></td>
+                        <td><a href="updateBook.php?id=<?php echo $book['id']; ?>&accion=a">Actualizar</a></td>
+                        <td><a href="manageBook.php?id=<?php echo $book['id']; ?>&accion=e">Eliminar</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

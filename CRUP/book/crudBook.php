@@ -1,62 +1,85 @@
 <?php
+require_once 'book.php';
 
-require_once('../conexion.php');
+class CrudBook
+{
+    private $pdo;
 
-class CrudLibro{
-    public function __construct(){
-    }
-    public function insertar($libro){
-        $db=Db::conectar();
-        $insert=$db->prepare('INSERT INTO books values(NULL,:nameBook)');
-        $insert->bindValue('nameBook',$libro->getNombre());
-        $insert->execute();
-    }
-
-    public function mostrar()
+    public function __construct($pdo)
     {
-        $db = Db::conectar();
-        $listaLibros = [];
-        $select = $db->query('SELECT * FROM books');
+        $this->pdo = $pdo;
+    }
 
-        foreach ($select->fetchAll() as $libro) {
-            $myLibro = new Libro();
-            $myLibro->setId($libro['id']);
-            $myLibro->setNombre($libro['nameBook']);
-            $listaLibros[] = $myLibro;
+    public function create(Book $book): bool
+    {
+        $sql = "INSERT INTO books (nameBook, authorId, publisherId) VALUES (:nameBook, :authorId, :publisherId)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nameBook', $book->getNameBook());
+        $stmt->bindValue(':authorId', $book->getAuthorId());
+        $stmt->bindValue(':publisherId', $book->getPublisherId());
+        return $stmt->execute();
+    }
+
+    public function read(int $id): ?Book
+    {
+        $sql = "SELECT * FROM books WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
+            return new Book($row['id'], $row['nameBook'], $row['authorId'], $row['publisherId']);
         }
-        return $listaLibros;
+        return null;
     }
 
-    public function eliminar($id)
+    public function update(Book $book, int $id): bool
     {
-        $db = Db::conectar();
-        $eliminar = $db->prepare('DELETE FROM books WHERE ID=:id');
-        $eliminar->bindValue('id', $id);
-        $eliminar->execute();
+        $sql = "UPDATE books SET nameBook = :nameBook, authorId = :authorId, publisherId = :publisherId WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nameBook', $book->getNameBook());
+        $stmt->bindValue(':authorId', $book->getAuthorId());
+        $stmt->bindValue(':publisherId', $book->getPublisherId());
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
-    public function obtenerLibro($id)
+    public function delete(int $id): bool
     {
-        $db = Db::conectar();
-        $select = $db->prepare('SELECT * FROM books WHERE ID=:id');
-        $select->bindValue('id', $id);
-        $select->execute();
-        $libro = $select->fetch();
-        $myLibro = new Libro();
-        $myLibro->setId($libro['id']);
-        $myLibro->setNombre($libro['nameBook']);
-        return $myLibro;
+        $sql = "DELETE FROM books WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
-    public function actualizar($libro)
+    public function getAll(): array
     {
-        $db = Db::conectar();
-        $actualizar = $db->prepare('UPDATE books SET nameBook=:nameBook WHERE ID=:id');
-        $actualizar->bindValue('id', $libro->getId());
-        $actualizar->bindValue('nameBook', $libro->getNombre());
-        $actualizar->execute();
+        $sql = "SELECT * FROM books";
+        $stmt = $this->pdo->query($sql);
+        $books = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $books[] = new Book($row['id'], $row['nameBook'], $row['authorId'], $row['publisherId']);
+        }
+        return $books;
+    }
+
+    public function getBooksWithDetails(): array
+    {
+        $sql = "SELECT books.id, books.nameBook, authors.firstName, authors.lastName, publishers.namePublisher 
+                FROM books 
+                JOIN authors ON books.authorId = authors.id 
+                JOIN publishers ON books.publisherId = publishers.id";
+        $stmt = $this->pdo->query($sql);
+        $books = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $books[] = [
+                'id' => $row['id'],
+                'nameBook' => $row['nameBook'],
+                'authorName' => $row['firstName'] . ' ' . $row['lastName'],
+                'publisherName' => $row['namePublisher']
+            ];
+        }
+        return $books;
     }
 }
-
-
 ?>

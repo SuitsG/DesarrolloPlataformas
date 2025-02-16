@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Publisher</title>
+    <link rel="stylesheet" href="/styles/publisher/addPublisher.css">
 </head>
 <body>
     <h1>Agregar editorial</h1>

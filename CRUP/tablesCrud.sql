@@ -1,8 +1,13 @@
 
 
 CREATE TABLE books(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nameBook VARCHAR(255)
+    id INT AUTO_INCREMENT,
+    nameBook VARCHAR(255),
+    authorId INT,
+    publisherId INT,
+    PRIMARY KEY (id, authorId, publisherId),
+    FOREIGN KEY (authorId) REFERENCES authors(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (publisherId) REFERENCES publishers(id) ON DELETE CASCADE ON UPDATE CASCADE    
 );
 
 
@@ -23,3 +28,4 @@ CREATE TABLE publishers(
     founderPublisher VARCHAR(255),
     countryPublisher VARCHAR(255)
 );
+

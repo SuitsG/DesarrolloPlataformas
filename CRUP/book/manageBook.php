@@ -1,27 +1,27 @@
 <?php
-require_once('../book/book.php');
-require_once('../book/crudBook.php');
+require_once('../conexion.php');
+require_once('book.php');
+require_once('crudBook.php');
 
-
-$crud = new CrudLibro();
-$libro = new Libro();
-
-
+$crud = new CrudBook(Db::conectar());
+$book = new Book();
 
 if (isset($_POST['insertar'])) {
-    $libro->setNombre($_POST['nombre']);
-    $crud->insertar($libro);
+    $book->setNameBook($_POST['nameBook']);
+    $book->setAuthorId($_POST['authorId']);
+    $book->setPublisherId($_POST['publisherId']);
+    $crud->create($book);
     header('Location: /index.php');
 } elseif (isset($_POST['actualizar'])) {
-    $libro->setId($_POST['id']);
-    $libro->setNombre($_POST['nombre']);
-    $crud->actualizar($libro);
+    $book->setNameBook($_POST['nameBook']);
+    $book->setAuthorId($_POST['authorId']);
+    $book->setPublisherId($_POST['publisherId']);
+    $crud->update($book, $_POST['id']);
     header('Location: /index.php');
 } elseif ($_GET['accion'] == 'e') {
-    $crud->eliminar($_GET['id']);
+    $crud->delete($_GET['id']);
     header('Location: /index.php');
 } elseif ($_GET['accion'] == 'a') {
     header('Location: actualizar.php');
 }
-
 ?>

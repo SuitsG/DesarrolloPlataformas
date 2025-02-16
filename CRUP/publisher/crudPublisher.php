@@ -25,11 +25,11 @@ class CrudPublisher
     {
         $sql = "SELECT * FROM publishers WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            return new Publisher($row['namePublisher'], $row['founderPublisher'], $row['countryPublisher']);
+            return new Publisher($row['id'], $row['namePublisher'], $row['founderPublisher'], $row['countryPublisher']);
         }
         return null;
     }
@@ -64,4 +64,5 @@ class CrudPublisher
         }
         return $publishers;
     }
+
 }

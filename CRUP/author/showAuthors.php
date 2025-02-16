@@ -1,11 +1,11 @@
 <?php
 require_once('author.php');
 require_once('crudAuthor.php');
+require_once('../conexion.php');
 
-
-$crud = new CrudAuthor();
-$author = new Author();
-$listAuthors = $crud->mostrar();
+$pdo = Db::conectar();
+$crud = new CrudAuthor($pdo);
+$listAuthors = $crud->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +30,8 @@ $listAuthors = $crud->mostrar();
                     <th>Teléfono</th>
                     <th>Correo</th>
                     <th>Ciudad</th>
-                    <th>Eliminar</th>
                     <th>Actualizar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,19 +43,15 @@ $listAuthors = $crud->mostrar();
                         <td><?php echo $author->getPhone(); ?></td>
                         <td><?php echo $author->getEmail(); ?></td>
                         <td><?php echo $author->getCity(); ?></td>
-
-                        <td><a href="/author/updateAuthors.php?id=<?php echo $author->getId(); ?>&accion=a">Actualizar</a></td>
-
+                        <td><a href="/author/updateAuthor.php?id=<?php echo $author->getId(); ?>&accion=a">Actualizar</a></td>
                         <td><a href="/author/manageAuthor.php?id=<?php echo $author->getId(); ?>&accion=e">Eliminar</a></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
         <a href="/index.php">Volver</a>
-       
     </main>
     <footer class="footer">
-        
     </footer>
 </body>
 </html>
