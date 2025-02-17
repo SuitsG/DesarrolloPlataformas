@@ -28,14 +28,14 @@ $publishers = $crud->getPublishers();
         <form class="form" action="manageBook.php" method="post">
             <table>
                 <tr>
-                    <input type="hidden" name="id" value="<?php echo $book->getId() ?>">
+                    <input type="hidden" name="id" value="<?php echo $book->getId() ?>" required>
                     <td>Nombre libro:</td>
-                    <td><input type="text" name="nameBook" value="<?php echo $book->getNameBook() ?>"></td>
+                    <td><input type="text" name="nameBook" value="<?php echo $book->getNameBook() ?>" required></td>
                 </tr>
                 <tr>
                     <td>Autor:</td>
                     <td>
-                        <select name="authorId">
+                        <select name="authorId" required>
                             <?php foreach ($authors as $author): ?>
                                 <option value="<?php echo $author['id']; ?>" <?php echo $author['id'] == $book->getAuthorId() ? 'selected' : ''; ?>>
                                     <?php echo $author['name']; ?>
@@ -47,7 +47,7 @@ $publishers = $crud->getPublishers();
                 <tr>
                     <td>Editorial:</td>
                     <td>
-                        <select name="publisherId">
+                        <select name="publisherId" required>
                             <?php foreach ($publishers as $publisher): ?>
                                 <option value="<?php echo $publisher['id']; ?>" <?php echo $publisher['id'] == $book->getPublisherId() ? 'selected' : ''; ?>>
                                     <?php echo $publisher['name']; ?>

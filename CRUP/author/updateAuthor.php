@@ -28,29 +28,29 @@ $author = $crud->read($_GET['id']);
         <form class="form" action="manageAuthor.php" method="post">
             <table>
                 <tr>
-                    <input type="hidden" name="id" value="<?php echo $author->getId() ?>">
+                    <input type="hidden" name="id" value="<?php echo $author->getId() ?>" required>
                     <td>Nombre:</td>
                     <td><input type="text" name="firstName" value="<?php echo $author->getFirstName() ?>"></td>
                 </tr>
                 <tr>
                     <td>Apellido:</td>
-                    <td><input type="text" name="lastName" value="<?php echo $author->getLastName() ?>"></td>
+                    <td><input type="text" name="lastName" value="<?php echo $author->getLastName() ?>" required></td>
                 </tr>
                 <tr>
                     <td>Dirección:</td>
-                    <td><input type="text" name="address" value="<?php echo $author->getAddress() ?>"></td>
+                    <td><input type="text" name="address" value="<?php echo $author->getAddress() ?>" required></td>
                 </tr>
                 <tr>
                     <td>Teléfono:</td>
-                    <td><input type="text" name="phone" value="<?php echo $author->getPhone() ?>"></td>
+                    <td><input type="text" name="phone" value="<?php echo $author->getPhone() ?>" required></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="email" name="email" value="<?php echo $author->getEmail() ?>"></td>
+                    <td><input type="email" name="email" value="<?php echo $author->getEmail() ?>" required></td>
                 </tr>
                 <tr>
                     <td>Ciudad:</td>
-                    <td><input type="text" name="city" value="<?php echo $author->getCity() ?>"></td>
+                    <td><input type="text" name="city" value="<?php echo $author->getCity() ?>" required></td>
                 </tr>
             </table>
             <div class="buttons">

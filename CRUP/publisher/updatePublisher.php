@@ -30,16 +30,16 @@ $publisher = $crud->read($_GET['id']);
             <table>
                 <tr>
                     <input type="hidden" name="id" value="<?php echo $publisher->getId() ?>">
-                    <td>Nombre Publisher:</td>
-                    <td><input type="text" name="namePublisher" value="<?php echo $publisher->getNamePublisher() ?>"></td>
+                    <td>Nombre de la editorial:</td>
+                    <td><input type="text" name="namePublisher" value="<?php echo $publisher->getNamePublisher() ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Founder Publisher:</td>
-                    <td><input type="text" name="founderPublisher" value="<?php echo $publisher->getFounderPublisher() ?>"></td>
+                    <td>Dueño de la editorial:</td>
+                    <td><input type="text" name="founderPublisher" value="<?php echo $publisher->getFounderPublisher() ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Country Publisher:</td>
-                    <td><input type="text" name="countryPublisher" value="<?php echo $publisher->getCountryPublisher() ?>"></td>
+                    <td>País de la editorial:</td>
+                    <td><input type="text" name="countryPublisher" value="<?php echo $publisher->getCountryPublisher() ?>" required></td>
                 </tr>
                 <input type="hidden" name="actualizar" value="actualizar">
             </table>
