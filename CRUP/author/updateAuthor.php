@@ -15,13 +15,17 @@ $author = $crud->read($_GET['id']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Autor</title>
+    <title>Update author</title>
     <link rel="stylesheet" href="/styles/author/updateAuthor.css">
+    <link rel="shortcut icon" href="/images/icon.png" type="image/x-icon">
 </head>
 
 <body>
-    <main>
-        <form action="manageAuthor.php" method="post">
+    <header class="header">
+        <h1>Actualiza los datos del autor</h1>
+    </header>
+    <main class="main">
+        <form class="form" action="manageAuthor.php" method="post">
             <table>
                 <tr>
                     <input type="hidden" name="id" value="<?php echo $author->getId() ?>">
@@ -48,12 +52,17 @@ $author = $crud->read($_GET['id']);
                     <td>Ciudad:</td>
                     <td><input type="text" name="city" value="<?php echo $author->getCity() ?>"></td>
                 </tr>
-                <input type="hidden" name="actualizar" value="actualizar">
             </table>
-            <input type="submit" value="Guardar">
-            <a href="/index.php">Volver</a>
+            <div class="buttons">
+                <input type="hidden" name="actualizar" value="actualizar">
+                <input type="submit" value="Guardar">
+                <a href="/index.php">Volver</a>
+            </div>
         </form>
     </main>
+    <footer class="footer">
+        &copy; 2025 Universidad
+    </footer>
 
 </body>
 

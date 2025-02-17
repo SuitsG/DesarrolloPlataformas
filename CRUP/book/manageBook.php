@@ -18,10 +18,11 @@ if (isset($_POST['insertar'])) {
     $book->setPublisherId($_POST['publisherId']);
     $crud->update($book, $_POST['id']);
     header('Location: /index.php');
-} elseif ($_GET['accion'] == 'e') {
+} elseif (isset($_GET['accion']) && $_GET['accion'] == 'e') {
     $crud->delete($_GET['id']);
     header('Location: /index.php');
-} elseif ($_GET['accion'] == 'a') {
+} elseif (isset($_GET['accion']) && $_GET['accion'] == 'a') {
     header('Location: actualizar.php');
 }
+
 ?>

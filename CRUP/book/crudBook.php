@@ -44,6 +44,34 @@ class CrudBook
         return $stmt->execute();
     }
 
+    public function getAuthors(): array
+    {
+        $sql = "SELECT id, firstName, lastName FROM authors";
+        $stmt = $this->pdo->query($sql);
+        $authors = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $authors[] = [
+                'id' => $row['id'],
+                'name' => $row['firstName'] . ' ' . $row['lastName']
+            ];
+        }
+        return $authors;
+    }
+
+    public function getPublishers(): array
+    {
+        $sql = "SELECT id, namePublisher FROM publishers";
+        $stmt = $this->pdo->query($sql);
+        $publishers = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $publishers[] = [
+                'id' => $row['id'],
+                'name' => $row['namePublisher']
+            ];
+        }
+        return $publishers;
+    }
+
     public function delete(int $id): bool
     {
         $sql = "DELETE FROM books WHERE id = :id";
